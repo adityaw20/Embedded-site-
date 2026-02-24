@@ -5,108 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/fabfdf08cb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Embedded Developer Toolkit</title>
+    <title>Aditya DevKit</title>
 </head>
+
 <body>
 
 <header>
-    <h1>Embedded Developer Toolkit</h1>
+    <h1>Aditya DevKit ⚡</h1>
     <i class="fa-solid fa-moon theme-toggle" id="themeIcon"></i>
 </header>
 
+<!-- ================= CONVERTERS ================= -->
+
 <div class="section">
-<h3>🧮 Calculators</h3>
+<h3>🔁 Advanced Converters</h3>
 <div class="tools-grid">
 
 <div class="tool-card">
-<h4>Timer Calculator</h4>
-<input type="number" id="timerClock" placeholder="Clock Frequency">
-<select id="timerUnit">
-<option value="1">Hz</option>
-<option value="1000">kHz</option>
-<option value="1000000">MHz</option>
-</select>
-<select id="prescaler">
-<option>1</option><option>8</option><option>64</option><option>256</option><option>1024</option>
-</select>
-<input type="number" id="time" placeholder="Desired Time (ms)">
-<button id="timerBtn">Calculate</button>
-<div class="result-box" id="timerResult"></div>
-<button class="copy-btn" data-copy="timerResult">Copy</button>
+<h4>IEEE754 Breakdown (Float32)</h4>
+<input type="number" id="floatBreakInput" placeholder="Enter Decimal">
+<button id="floatBreakBtn">Breakdown</button>
+<div class="result-box" id="floatBreakResult"></div>
 </div>
 
 <div class="tool-card">
-<h4>PWM Calculator</h4>
-<input type="number" id="pwmClock" placeholder="Clock Frequency">
-<select id="pwmUnit">
-<option value="1">Hz</option>
-<option value="1000">kHz</option>
-<option value="1000000">MHz</option>
-</select>
-<select id="pwmPrescaler">
-<option>1</option><option>8</option><option>64</option><option>256</option><option>1024</option>
-</select>
-<input type="number" id="pwmFreq" placeholder="Desired PWM Frequency">
-<button id="pwmBtn">Calculate</button>
-<div class="result-box" id="pwmResult"></div>
-<button class="copy-btn" data-copy="pwmResult">Copy</button>
-</div>
-
-</div>
-</div>
-
-<div class="section">
-<h3>🔁 Converters</h3>
-<div class="tools-grid">
-
-<div class="tool-card">
-<h4>IEEE754 Converter (Float32)</h4>
-<input type="number" id="floatInput" placeholder="Decimal Number">
-<button id="floatBtn">Convert</button>
-<div class="result-box" id="floatResult"></div>
-<button class="copy-btn" data-copy="floatResult">Copy</button>
+<h4>Voltage ↔ ADC Converter</h4>
+<input type="number" id="voltageInput" placeholder="Voltage">
+<input type="number" id="adcRef" placeholder="Reference Voltage">
+<input type="number" id="adcRes" placeholder="Resolution (bits)">
+<button id="adcBtn">Convert</button>
+<div class="result-box" id="adcResult"></div>
 </div>
 
 <div class="tool-card">
-<h4>Register Decoder</h4>
-<input type="text" id="regInput" placeholder="HEX Value">
-<select id="regWidth">
-<option value="8">8-bit</option>
-<option value="16">16-bit</option>
-<option value="32">32-bit</option>
-</select>
-<button id="regBtn">Decode</button>
-<div class="result-box" id="regResult"></div>
-<button class="copy-btn" data-copy="regResult">Copy</button>
-</div>
-
-</div>
-</div>
-
-<div class="section">
-<h3>📡 Protocol & CRC Tools</h3>
-<div class="tools-grid">
-
-<div class="tool-card">
-<h4>CRC Generator (CRC-16 CCITT)</h4>
-<input type="text" id="crcInput" placeholder="HEX Data">
-<button id="crcBtn">Generate</button>
-<div class="result-box" id="crcResult"></div>
-<button class="copy-btn" data-copy="crcResult">Copy</button>
+<h4>dB ↔ Gain Converter</h4>
+<input type="number" id="dbInput" placeholder="dB">
+<button id="dbBtn">Convert</button>
+<div class="result-box" id="dbResult"></div>
 </div>
 
 <div class="tool-card">
-<h4>UART Frame Builder</h4>
-<input type="text" id="uartInput" placeholder="HEX Byte">
-<button id="uartBtn">Build Frame</button>
-<div class="result-box" id="uartResult"></div>
-<button class="copy-btn" data-copy="uartResult">Copy</button>
+<h4>CAN ID Formatter</h4>
+<input type="number" id="canInput" placeholder="Decimal CAN ID">
+<button id="canBtn">Format</button>
+<div class="result-box" id="canResult"></div>
+</div>
+
+<div class="tool-card">
+<h4>Register Bit Visualizer</h4>
+<input type="text" id="bitInput" placeholder="HEX Value">
+<button id="bitBtn">Visualize</button>
+<div class="result-box" id="bitResult"></div>
+</div>
+
+<div class="tool-card">
+<h4>Packet Builder / Decoder</h4>
+<input type="text" id="packetInput" placeholder="HEX Bytes">
+<button id="packetBtn">Decode</button>
+<div class="result-box" id="packetResult"></div>
 </div>
 
 </div>
 </div>
-
-<footer>Built for Embedded / IoT Developers 😎</footer>
 
 <script src="script.js"></script>
 </body>
