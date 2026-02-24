@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/fabfdf08cb.js" crossorigin="anonymous"></script>
+    <title>Embedded Developer Toolkit</title>
+</head>
+
+<style>
+
+:root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-tool: #0f172a;
+    --text: white;
+    --accent: #38bdf8;
+}
+
+body.light {
+    --bg-main: #f1f5f9;
+    --bg-card: white;
+    --bg-tool: #f1f5f9;
+    --text: #0f172a;
+    --accent: #0ea5e9;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg-main);
+    color: var(--text);
+    transition: 0.3s;
+}
+
+header {
+    background: var(--bg-card);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--accent);
+}
+
+.theme-toggle {
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--accent);
+}
+
+.hero {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.section {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.section h3 {
+    border-left: 4px solid var(--accent);
+    padding-left: 10px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.tool-card {
+    background: var(--bg-card);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background: var(--bg-tool);
+    color: var(--text);
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    background: var(--accent);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.result-box {
+    margin-top: 10px;
+    background: var(--bg-tool);
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: pre-line;
+}
+
+.copy-btn {
+    margin-top: 5px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    width: 100%;
+}
+
+.copy-btn:hover {
+    background: var(--accent);
+    color: black;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.5;
+    font-size: 13px;
+}
+
+</style>
+
+<body>
+
+<header>
+    <h1>Embedded Developer Toolkit</h1>
+    <i class="fa-solid fa-moon theme-toggle" onclick="toggleTheme()" id="themeIcon"></i>
+</header>
+
+<div class="hero">
+    <h2>All-in-One Toolkit for Embedded & IoT Developers</h2>
+    <p>Calculators • Converters • Debug Utilities</p>
+</div>
+
+<!-- ================= CALCULATORS ================= -->
+
+<div class="section">
+    <h3>🧮 Calculators</h3>
+
+    <div class="tools-grid">
+
+        <!-- Baud Rate -->
+        <div class="tool-card">
+            <h4>Baud Rate Calculator</h4>
+
+            <input type="number" id="clock" placeholder="Clock Frequency">
+
+            <select id="freqUnit">
+                <option value="1">Hz</option>
+                <option value="1000">kHz</option>
+                <option value="1000000">MHz</option>
+                <option value="1000000000">GHz</option>
+            </select>
+
+            <input type="number" id="baud" placeholder="Desired Baud Rate">
+
+            <button onclick="calcBaud()">Calculate</button>
+
+            <div class="result-box" id="baudResult"></div>
+            <button class="copy-btn" onclick="copyResult('baudResult')">Copy Result</button>
+        </div>
+
+        <!-- Battery Life -->
+        <div class="tool-card">
+            <h4>Battery Life Estimator</h4>
+
+            <input type="number" id="capacity" placeholder="Battery Capacity (mAh)">
+            <input type="number" id="current" placeholder="Current Consumption (mA)">
+
+            <button onclick="calcBattery()">Estimate</button>
+
+            <div class="result-box" id="batteryResult"></div>
+            <button class="copy-btn" onclick="copyResult('batteryResult')">Copy Result</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= CONVERTERS ================= -->
+
+<div class="section">
+    <h3>🔁 Converters</h3>
+
+    <div class="tools-grid">
+
+        <div class="tool-card">
+            <h4>Number Base Converter</h4>
+
+            <select id="conversionType">
+                <option value="hex-bin">HEX → BIN</option>
+                <option value="bin-hex">BIN → HEX</option>
+                <option value="dec-hex">DEC → HEX</option>
+                <option value="hex-dec">HEX → DEC</option>
+                <option value="dec-bin">DEC → BIN</option>
+                <option value="bin-dec">BIN → DEC</option>
+            </select>
+
+            <input type="text" id="numberInput" placeholder="Enter value">
+
+            <button onclick="convertNumber()">Convert</button>
+
+            <div class="result-box" id="convertResult"></div>
+            <button class="copy-btn" onclick="copyResult('convertResult')">Copy Result</button>
+        </div>
+
+        <!-- Bitmask -->
+        <div class="tool-card">
+            <h4>Bit Mask Calculator</h4>
+
+            <input type="number" id="bitPosition" placeholder="Bit Position">
+
+            <button onclick="calcBitmask()">Generate</button>
+
+            <div class="result-box" id="bitmaskResult"></div>
+            <button class="copy-btn" onclick="copyResult('bitmaskResult')">Copy Result</button>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    Built for Embedded / IoT / Firmware Developers 😎
+</footer>
+
+<script>
+
+/* 🌗 Theme Toggle */
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "light") {
+    document.body.classList.add("light");
+    document.getElementById("themeIcon").className = "fa-solid fa-sun theme-toggle";
+}
+
+function toggleTheme() {
+    document.body.classList.toggle("light");
+    const icon = document.getElementById("themeIcon");
+
+    if (document.body.classList.contains("light")) {
+        icon.className = "fa-solid fa-sun theme-toggle";
+        localStorage.setItem("theme", "light");
+    } else {
+        icon.className = "fa-solid fa-moon theme-toggle";
+        localStorage.setItem("theme", "dark");
+    }
+}
+
+/* 🧮 Baud Rate */
+function calcBaud() {
+    const clockValue = parseFloat(document.getElementById("clock").value);
+    const baud = parseFloat(document.getElementById("baud").value);
+    const unitMultiplier = parseFloat(document.getElementById("freqUnit").value);
+
+    if (!clockValue || !baud) return;
+
+    const clockHz = clockValue * unitMultiplier;
+    const ubrr = (clockHz / (16 * baud)) - 1;
+
+    document.getElementById("baudResult").innerText =
+        `Clock: ${clockHz.toLocaleString()} Hz
+UBRR Value ≈ ${ubrr.toFixed(2)}`;
+}
+
+/* 🔋 Battery */
+function calcBattery() {
+    const cap = document.getElementById("capacity").value;
+    const cur = document.getElementById("current").value;
+
+    if (!cap || !cur) return;
+
+    const hours = cap / cur;
+
+    document.getElementById("batteryResult").innerText =
+        `Estimated Life ≈ ${hours.toFixed(2)} hours`;
+}
+
+/* 🔁 Converter */
+function convertNumber() {
+    const type = document.getElementById("conversionType").value;
+    const value = document.getElementById("numberInput").value.trim();
+
+    if (!value) return;
+
+    let result = "";
+
+    try {
+        switch(type) {
+            case "hex-bin":
+                result = parseInt(value, 16).toString(2);
+                break;
+
+            case "bin-hex":
+                result = "0x" + parseInt(value, 2).toString(16).toUpperCase();
+                break;
+
+            case "dec-hex":
+                result = "0x" + parseInt(value, 10).toString(16).toUpperCase();
+                break;
+
+            case "hex-dec":
+                result = parseInt(value, 16);
+                break;
+
+            case "dec-bin":
+                result = parseInt(value, 10).toString(2);
+                break;
+
+            case "bin-dec":
+                result = parseInt(value, 2);
+                break;
+        }
+    } catch {
+        result = "Invalid Input";
+    }
+
+    document.getElementById("convertResult").innerText = result;
+}
+
+/* 🧪 Bitmask */
+function calcBitmask() {
+    const pos = document.getElementById("bitPosition").value;
+
+    if (pos === "") return;
+
+    const mask = 1 << pos;
+
+    document.getElementById("bitmaskResult").innerText =
+        `DEC: ${mask}
+HEX: 0x${mask.toString(16).toUpperCase()}
+BIN: ${mask.toString(2)}`;
+}
+
+/* 📋 Copy Utility */
+function copyResult(id) {
+    const text = document.getElementById(id).innerText;
+
+    if (!text) return;
+
+    navigator.clipboard.writeText(text);
+    alert("Copied 😎");
+}
+
+</script>
+
+</body>
+</html>
