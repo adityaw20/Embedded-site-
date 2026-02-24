@@ -1,75 +1,170 @@
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #0f172a;
-    color: white;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+    --bg-main: #050816;
+    --bg-card: rgba(15, 23, 42, 0.7);
+    --bg-tool: rgba(2, 6, 23, 0.9);
+    --text: #e5e7eb;
+    --accent: #38bdf8;
+    --glow: 0 0 15px rgba(56, 189, 248, 0.6);
 }
 
 body.light {
-    background: #f1f5f9;
-    color: #0f172a;
+    --bg-main: #f1f5f9;
+    --bg-card: rgba(255, 255, 255, 0.8);
+    --bg-tool: #f1f5f9;
+    --text: #0f172a;
+    --accent: #0ea5e9;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-main);
+    color: var(--text);
+    transition: 0.4s ease;
+    overflow-x: hidden;
+}
+
+/* 🔥 Animated Background Glow */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    background: radial-gradient(circle, rgba(56,189,248,0.15), transparent 40%);
+    animation: pulse 6s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); opacity: 0.4; }
+    to { transform: scale(1.2); opacity: 0.8; }
 }
 
 header {
-    background: #1e293b;
+    backdrop-filter: blur(12px);
+    background: var(--bg-card);
+    border-bottom: 1px solid rgba(56,189,248,0.2);
     padding: 15px 25px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--glow);
 }
 
-body.light header {
-    background: white;
+header h1 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+}
+
+.theme-toggle {
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--accent);
+    transition: 0.3s;
+}
+
+.theme-toggle:hover {
+    transform: rotate(25deg) scale(1.2);
+    text-shadow: var(--glow);
 }
 
 .section {
     max-width: 1100px;
     margin: auto;
-    padding: 20px;
+    padding: 25px;
+}
+
+.section h3 {
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+    color: var(--accent);
 }
 
 .tools-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 15px;
+    gap: 18px;
 }
 
 .tool-card {
-    background: #1e293b;
-    padding: 15px;
-    border-radius: 10px;
+    backdrop-filter: blur(14px);
+    background: var(--bg-card);
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(56,189,248,0.15);
+    transition: 0.3s ease;
+    position: relative;
 }
 
-body.light .tool-card {
-    background: white;
+.tool-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--glow);
+}
+
+.tool-card h4 {
+    margin-top: 0;
+    color: var(--accent);
 }
 
 input, select {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    border-radius: 6px;
-    border: none;
+    border-radius: 8px;
+    border: 1px solid rgba(56,189,248,0.15);
+    background: var(--bg-tool);
+    color: var(--text);
+    transition: 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: var(--glow);
 }
 
 button {
     margin-top: 10px;
-    padding: 8px;
-    border-radius: 6px;
+    padding: 9px;
+    border-radius: 8px;
     border: none;
-    background: #38bdf8;
+    background: var(--accent);
+    font-weight: 600;
     cursor: pointer;
+    transition: 0.25s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: var(--glow);
 }
 
 .result-box {
     margin-top: 10px;
-    background: #0f172a;
+    background: var(--bg-tool);
     padding: 10px;
-    border-radius: 6px;
-    white-space: pre-line;
+    border-radius: 8px;
+    font-size: 13px;
+    border: 1px solid rgba(56,189,248,0.1);
 }
 
 .copy-btn {
     background: transparent;
-    border: 1px solid #38bdf8;
-    color: #38bdf8;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+}
+
+.copy-btn:hover {
+    background: var(--accent);
+    color: black;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.4;
+    font-size: 12px;
 }
