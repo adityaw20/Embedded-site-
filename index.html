@@ -15,15 +15,92 @@
     <i class="fa-solid fa-moon theme-toggle" id="themeIcon"></i>
 </header>
 
-<!-- ================= CONVERTERS ================= -->
+<!-- ================= CALCULATORS ================= -->
 
 <div class="section">
-<h3>🔁 Advanced Converters</h3>
+<h3>🧮 Calculators</h3>
 <div class="tools-grid">
 
 <div class="tool-card">
+<h4>Timer Calculator</h4>
+<input type="number" id="timerClock" placeholder="Clock Frequency">
+<select id="timerUnit">
+<option value="1">Hz</option>
+<option value="1000">kHz</option>
+<option value="1000000">MHz</option>
+</select>
+<select id="prescaler">
+<option>1</option><option>8</option><option>64</option><option>256</option><option>1024</option>
+</select>
+<input type="number" id="time" placeholder="Time (ms)">
+<button id="timerBtn">Calculate</button>
+<div class="result-box" id="timerResult"></div>
+</div>
+
+<div class="tool-card">
+<h4>PWM Calculator</h4>
+<input type="number" id="pwmClock" placeholder="Clock Frequency">
+<select id="pwmUnit">
+<option value="1">Hz</option>
+<option value="1000">kHz</option>
+<option value="1000000">MHz</option>
+</select>
+<select id="pwmPrescaler">
+<option>1</option><option>8</option><option>64</option><option>256</option><option>1024</option>
+</select>
+<input type="number" id="pwmFreq" placeholder="PWM Frequency">
+<button id="pwmBtn">Calculate</button>
+<div class="result-box" id="pwmResult"></div>
+</div>
+
+<div class="tool-card">
+<h4>Baud Rate Calculator</h4>
+<input type="number" id="baudClock" placeholder="Clock Frequency">
+<select id="baudUnit">
+<option value="1">Hz</option>
+<option value="1000">kHz</option>
+<option value="1000000">MHz</option>
+</select>
+<input type="number" id="baudRate" placeholder="Baud Rate">
+<button id="baudBtn">Calculate</button>
+<div class="result-box" id="baudResult"></div>
+</div>
+
+<div class="tool-card">
+<h4>Battery Life Estimator</h4>
+<input type="number" id="capacity" placeholder="Capacity (mAh)">
+<input type="number" id="current" placeholder="Current (mA)">
+<button id="batteryBtn">Estimate</button>
+<div class="result-box" id="batteryResult"></div>
+</div>
+
+</div>
+</div>
+
+<!-- ================= CONVERTERS ================= -->
+
+<div class="section">
+<h3>🔁 Converters</h3>
+<div class="tools-grid">
+
+<div class="tool-card">
+<h4>Number Base Converter</h4>
+<select id="conversionType">
+<option value="hex-bin">HEX → BIN</option>
+<option value="bin-hex">BIN → HEX</option>
+<option value="hex-dec">HEX → DEC</option>
+<option value="dec-hex">DEC → HEX</option>
+<option value="dec-bin">DEC → BIN</option>
+<option value="bin-dec">BIN → DEC</option>
+</select>
+<input type="text" id="numberInput" placeholder="Enter Value">
+<button id="convertBtn">Convert</button>
+<div class="result-box" id="convertResult"></div>
+</div>
+
+<div class="tool-card">
 <h4>IEEE754 Breakdown (Float32)</h4>
-<input type="number" id="floatBreakInput" placeholder="Enter Decimal">
+<input type="number" id="floatBreakInput" placeholder="Decimal Number">
 <button id="floatBreakBtn">Breakdown</button>
 <div class="result-box" id="floatBreakResult"></div>
 </div>
@@ -46,9 +123,32 @@
 
 <div class="tool-card">
 <h4>CAN ID Formatter</h4>
-<input type="number" id="canInput" placeholder="Decimal CAN ID">
+<input type="number" id="canInput" placeholder="CAN ID">
 <button id="canBtn">Format</button>
 <div class="result-box" id="canResult"></div>
+</div>
+
+</div>
+</div>
+
+<!-- ================= DEBUG & PROTOCOL ================= -->
+
+<div class="section">
+<h3>📡 Debug & Protocol Tools</h3>
+<div class="tools-grid">
+
+<div class="tool-card">
+<h4>CRC Generator (CRC-16 CCITT)</h4>
+<input type="text" id="crcInput" placeholder="HEX Bytes">
+<button id="crcBtn">Generate</button>
+<div class="result-box" id="crcResult"></div>
+</div>
+
+<div class="tool-card">
+<h4>UART Frame Builder</h4>
+<input type="text" id="uartInput" placeholder="HEX Byte">
+<button id="uartBtn">Build Frame</button>
+<div class="result-box" id="uartResult"></div>
 </div>
 
 <div class="tool-card">
@@ -59,7 +159,7 @@
 </div>
 
 <div class="tool-card">
-<h4>Packet Builder / Decoder</h4>
+<h4>Packet Decoder</h4>
 <input type="text" id="packetInput" placeholder="HEX Bytes">
 <button id="packetBtn">Decode</button>
 <div class="result-box" id="packetResult"></div>
@@ -67,6 +167,8 @@
 
 </div>
 </div>
+
+<footer>Built for Embedded Engineers 😎🔥</footer>
 
 <script src="script.js"></script>
 </body>
