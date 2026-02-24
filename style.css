@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f172a;
+    color: white;
+}
+
+body.light {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+header {
+    background: #1e293b;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+body.light header {
+    background: white;
+}
+
+.section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.tool-card {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+body.light .tool-card {
+    background: white;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    background: #38bdf8;
+    cursor: pointer;
+}
+
+.result-box {
+    margin-top: 10px;
+    background: #0f172a;
+    padding: 10px;
+    border-radius: 6px;
+    white-space: pre-line;
+}
+
+.copy-btn {
+    background: transparent;
+    border: 1px solid #38bdf8;
+    color: #38bdf8;
+}
